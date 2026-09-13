@@ -9,6 +9,8 @@ app = Flask("Sentiment Analyzer")
 def sent_analyzer():
     """Analyze the sentiment of the text passed in the request."""
     text_to_analyze = request.args.get('textToAnalyze')
+    if not text_to_analyze or not text_to_analyze.strip():
+        return "No text entered! Please provide some text to analyze."
     response = sentiment_analyzer(text_to_analyze)
     label = response['label']
     score = response['score']
